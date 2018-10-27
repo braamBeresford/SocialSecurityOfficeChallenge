@@ -1,2 +1,2 @@
 default: 
-	g++ -std=c++11 ss.cpp
+	g++ -std=c++17 ss.cpp -o ss

@@ -8,12 +8,13 @@
 #include <queue>
 #include <mutex>
 #include <chrono>
+#include <thread>
 
-#define THREADS 3 	
-#define NUM_RECORDS 1000000
+#define NUM_RECORDS 100'000'000
 using namespace std;
 using namespace std::chrono;
 
+int THREADS;
 queue<string> result;
 int currResultIndex = 0;
 mutex m;
@@ -24,6 +25,7 @@ int randSS();
 void genEntry(int lower, int upper);
 
 int main(){
+	THREADS = thread::hardware_concurrency();
 	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	srand (time(NULL));
 	myfile.open("ss.txt");
@@ -57,12 +59,13 @@ void genEntry(int lower, int upper){
 }
 
 string randName(){
-	int len = rand()%(12-8 + 1) + 8;
+  int random = rand();
+	int len = random%(12-8 + 1) + 8;
 	
 	string test = "";
 
 	for(int i =0 ; i < len; i ++){
-		test += ((char)('a' + rand()%26));
+		test += ((char)('a' + random%26));
 	}
 
 	return test;

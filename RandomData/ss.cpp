@@ -8,7 +8,7 @@
 using namespace std;
 using namespace std::chrono;
 
-#define NUM_RECORDS 1000000
+#define NUM_RECORDS 100'000'000
 
 string randName();
 int randSS();
