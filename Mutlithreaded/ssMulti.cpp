@@ -10,9 +10,9 @@
 #include <chrono>
 
 #define THREADS 3 	
-#define NUM_RECORDS 100000000
+#define NUM_RECORDS 1000000
 using namespace std;
-
+using namespace std::chrono;
 
 queue<string> result;
 int currResultIndex = 0;
@@ -24,6 +24,7 @@ int randSS();
 void genEntry(int lower, int upper);
 
 int main(){
+	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	srand (time(NULL));
 	myfile.open("ss.txt");
 	thread myThreads[THREADS];
@@ -41,18 +42,18 @@ int main(){
 	cout << "Done. " << endl;
 
 	myfile.close();
+	high_resolution_clock::time_point t2 = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>( t2 - t1 ).count();
+
+	cout << "Duration " << duration << endl;
 	return 0;
 }
 
 void genEntry(int lower, int upper){
-	cout << "\n Lower: " << lower << " Upper: " << upper << endl;
 	for(int i = lower; i < upper; i++){
-		cout << "HEllo1" << endl;
 		lock_guard<mutex> lock(m);
 		myfile << randName() << " " << randSS() << endl;
-		cout << "HEllo2" << endl;
 	}
-	cout << "HELP " << endl;
 }
 
 string randName(){
