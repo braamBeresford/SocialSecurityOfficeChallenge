@@ -17,11 +17,12 @@ int main(){
 	srand (time(NULL));
 	ofstream myfile;
 	myfile.open("ss.txt");
+
+		cout << "Not Threading... " << endl;
 	for(int i = 0; i < NUM_RECORDS; i++){
 		myfile << randName() << " " << randSS() << endl;
 	}
 	myfile.close();
-		cout << "Not Threading... " << endl;
 
 	cout << "Done. " << endl;
 	high_resolution_clock::time_point t2 = high_resolution_clock::now();

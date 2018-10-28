@@ -15,7 +15,6 @@ using namespace std;
 using namespace std::chrono;
 
 int THREADS;
-queue<string> result;
 int currResultIndex = 0;
 mutex m;
 ofstream myfile;
