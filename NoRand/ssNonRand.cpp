@@ -1,15 +1,13 @@
 #include <iostream>
 #include <string>
-#include <fstream>
+#include <stdio.h>
 using namespace std;
 
 int main(){
-	ofstream myfile;
-	myfile.open("ss.txt");
+  FILE *myFile = fopen("ss.txt", "w");
 	for(int i = 0; i < 100'000'000; i++){
-		myfile << "Breanan sucks" << " " << "5555555555" << endl;
+    fprintf(myFile, "Breanan sucks: 555-555-5555");
 	}
-	myfile.close();
 	return 0;
 }
 
